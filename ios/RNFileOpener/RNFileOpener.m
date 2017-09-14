@@ -32,6 +32,11 @@ RCT_REMAP_METHOD(open, filePath:(NSString *)filePath fileMine:(NSString *)fileMi
     
     BOOL wasOpened = [self.FileOpener presentOpenInMenuFromRect:ctrl.view.bounds inView:ctrl.view animated:YES];
     
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        wasOpened = [self.FileOpener presentOptionsMenuFromRect:CGRectMake(CGRectGetMidX(ctrl.view.frame), CGRectGetMidY(ctrl.view.frame), 0, 20) inView:ctrl.view animated:YES];
+    }
+    
     if (wasOpened) {
         resolve(@"Open success!!");
     } else {
