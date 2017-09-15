@@ -7,7 +7,7 @@
   "version": "0.1.0",
   "description": "A React Native module that allows you to open a file (mp3, mp4, pdf, word, excel, dwg etc.) on your device with its default application",
   "author": "huang zuizui",
-  "main": "react-native-file-opener.js",
+  "main": "react-native-file-opener",
   "contributors": [
     {
       "name": "huang zuizui",

@@ -12,8 +12,10 @@
 RCT_EXPORT_MODULE();
 
 RCT_REMAP_METHOD(open, filePath:(NSString *)filePath fileMine:(NSString *)fileMine
-                 resolver:(RCTPromiseResolveBlock)resolve
-                 rejecter:(RCTPromiseRejectBlock)reject)
+                iPadPositionX:(nonnull NSNumber *)iPadPositionX iPadPositionY:(nonnull NSNumber *)iPadPositionY 
+                iPadPositionWidth:(nonnull NSNumber *)iPadPositionWidth iPadPositionHeight:(nonnull NSNumber *)iPadPositionHeight
+                resolver:(RCTPromiseResolveBlock)resolve
+                rejecter:(RCTPromiseRejectBlock)reject)
 {
     
     NSURL *fileURL = [NSURL fileURLWithPath:filePath];
@@ -34,7 +36,8 @@ RCT_REMAP_METHOD(open, filePath:(NSString *)filePath fileMine:(NSString *)fileMi
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
-        wasOpened = [self.FileOpener presentOptionsMenuFromRect:CGRectMake(CGRectGetMidX(ctrl.view.frame), CGRectGetMidY(ctrl.view.frame), 0, 20) inView:ctrl.view animated:YES];
+        CGRect iPadRect = CGRectMake([iPadPositionX floatValue], [iPadPositionY floatValue], [iPadPositionWidth floatValue], [iPadPositionHeight floatValue]);
+        wasOpened = [self.FileOpener presentOptionsMenuFromRect:iPadRect inView:ctrl.view animated:YES];
     }
     
     if (wasOpened) {
